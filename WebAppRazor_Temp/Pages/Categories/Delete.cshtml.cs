@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using WebAppRazor_Temp.Data;
 using WebAppRazor_Temp.Models;
+using System.Threading.Tasks;
 
 namespace WebAppRazor_Temp.Pages.Categories
 {
@@ -11,36 +12,40 @@ namespace WebAppRazor_Temp.Pages.Categories
         private readonly ApplicationDbContext _db;
 
         public Category Category { get; set; }
+
         public DeleteModel(ApplicationDbContext db)
         {
             _db = db;
         }
 
-        public void OnGet(int? id)
+        public IActionResult OnGet(int? id)
         {
-
-            if (id != null && id != 0)
+            if (id == null || id == 0)
             {
-                Category = _db.Categories.Find(id);
+                return NotFound();
             }
 
+            Category = _db.Categories.Find(id);
+
+            if (Category == null)
+            {
+                return NotFound();
+            }
+
+            return Page();
         }
 
         public IActionResult OnPost()
         {
-            Category?  obj = _db.Categories.Find(Category.Id);
-            if (obj == null)
+            var category = _db.Categories.Find(Category.Id);
+            if (category == null)
             {
                 return NotFound();
             }
-            
-                _db.Categories.Remove(obj);
-                _db.SaveChanges();
-                //TempData["success"] = "Category updated successfully";
-                return RedirectToPage("Index");
-            }
 
+            _db.Categories.Remove(category);
+            _db.SaveChanges();
+            return RedirectToPage("/Categories/Index");
         }
     }
-
-
+}
