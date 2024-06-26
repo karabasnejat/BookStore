@@ -45,6 +45,7 @@ namespace WebAppRazor_Temp.Pages.Categories
 
             _db.Categories.Remove(category);
             _db.SaveChanges();
+            TempData["success"] = "Category has been deleted successfully";
             return RedirectToPage("/Categories/Index");
         }
     }
