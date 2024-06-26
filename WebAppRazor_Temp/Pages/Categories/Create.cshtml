@@ -1,14 +1,14 @@
-﻿@model Category
+﻿@page
+@model WebAppRazor_Temp.Pages.Categories.CreateModel
 
 <div class="border p-3 mt-4">
     <h1>Create New Category</h1>
 
     <form method="post">
-        <div asp-validation-summary="ModelOnly"></div>
         <div class="form-group">
             <label asp-for="Category.Name"></label>
             <input asp-for="Category.Name" class="form-control" />
-            <span asp-validation-for="Name" class="text-danger"></span>
+            <span asp-validation-for="Category.Name" class="text-danger"></span>
         </div>
         <div class="form-group">
             <label asp-for="Category.DisplayOrder"></label>
@@ -17,12 +17,11 @@
         </div>
         <div class="form-group mt-3">
             <button type="submit" class="btn btn-primary mr-3">Save</button>
-            <a asp-page="Category/Index"  class="btn btn-outline-secondary">Back to List</a>
+            <a asp-page="/Categories/Index" class="btn btn-outline-secondary">Back to List</a>
         </div>
     </form>
 </div>
 
 @section Scripts {
     <partial name="_ValidationScriptsPartial" />
-   
 }

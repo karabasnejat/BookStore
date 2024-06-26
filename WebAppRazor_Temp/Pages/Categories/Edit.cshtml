@@ -1,0 +1,29 @@
+﻿@page 
+@model WebAppRazor_Temp.Pages.Categories.EditModel
+
+<div class="border p-3 mt-4">
+    <h1>Edit Category</h1>
+
+    <form method="post">
+        <input type="hidden" asp-for="Category.Id" />
+@*         <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+ *@        <div class="form-group">
+            <label asp-for="Category.Name" class="control-label"></label>
+            <input asp-for="Category.Name" class="form-control" />
+            <span asp-validation-for="Category.Name" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="Category.DisplayOrder" class="control-label"></label>
+            <input asp-for="Category.DisplayOrder" class="form-control" />
+            <span asp-validation-for="Category.DisplayOrder" class="text-danger"></span>
+        </div>
+        <div class="form-group mt-3">
+            <button type="submit" class="btn btn-primary mr-3">Save</button>
+            <a asp-page="/categories/index" class="btn btn-outline-secondary">Back to List></a>
+        </div>
+    </form>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}
