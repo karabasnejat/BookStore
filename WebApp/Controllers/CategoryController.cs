@@ -1,8 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using WebApp.Data;
 using WebApp.Models;
-using System.Collections.Generic;
-using System.Linq;
+using BookStore.DataAccess.Data;
 
 namespace WebApp.Controllers
 {
